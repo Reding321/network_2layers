@@ -128,6 +128,8 @@ print('Loading dataset...')
 train_data, val_data, test_data = utils.load_mnist()
 
 print('Training models...')
+
+# ----------------------------------------------------------
 # 参数查找
 best_config = {'accuracy': 0}
 for layer in layers:
@@ -144,11 +146,8 @@ for layer in layers:
                 best_config['learning_rate'] = learning_rate
                 best_config['weight_decay'] = weight_decay
 
-# best_config = {'accuracy': 96.77,
-# 'layer': [784, 40, 10],
-# 'learning_rate': 0.02,
-# 'weight_decay': 0}
-
+# ------------------------------------------
+# 测试
 print("Testing...")
 model = Net(best_config['layer'])
 model.load(f"model_{best_config['layer'][1]}_{best_config['learning_rate']}_{best_config['weight_decay']}.npz")
